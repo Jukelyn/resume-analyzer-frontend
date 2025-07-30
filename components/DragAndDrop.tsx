@@ -31,6 +31,11 @@ const DragAndDropFileUpload = ({
   };
 
   const processFile = (file: any) => {
+    if (file.type !== "application/pdf") {
+      setLocalError("Only PDF files are supported.");
+      return;
+    }
+
     if (file.size > 25 * 1024 * 1024) {
       setLocalError("File size exceeds 25MB. Please upload a smaller file.");
       return;
